@@ -9,7 +9,7 @@ from asyncio import gather
 from .commons import AbstractResponse, Message, BotMessage, AttackCommand, Sound, UserList
 
 
-class Scorbot:
+class LoultClient:
 
     MIN_RESPONSE_INTERVAL = 2 # in seconds
 

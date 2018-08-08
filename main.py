@@ -4,11 +4,15 @@ import gbulb
 
 from gi.repository import Gtk
 
+from tools.client import LoultClient
+
 
 class AdminWindow(Gtk.Window):
 
-    def __init__(self):
+    def __init__(self, loult_client: LoultClient):
         super().__init__(self, title="Manipulateuw")
+        self.client = loult_client
+        self.users_liststore = self.client.user_list.list_store
         self.set_border_width(10)
 
         # setting up grid on which to position elements
@@ -18,6 +22,7 @@ class AdminWindow(Gtk.Window):
         self.add(self.grid)
 
         # setting up userlist
+        self.treeview = Gtk.TreeView.new_with_model(self.users_liststore)
         self.scrollable_treelist = Gtk.ScrolledWindow()
         self.scrollable_treelist.set_vexpand(True)
         self.grid.attach(self.scrollable_treelist, 0, 0, 8, 10)
